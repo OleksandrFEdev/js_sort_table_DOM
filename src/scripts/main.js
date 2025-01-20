@@ -11,9 +11,9 @@ buttons.forEach((btn, index) => {
 const names = [];
 const position = [];
 const ages = [];
-const salarys = [];
+const salaries = [];
 
-function getPropertys() {
+function getProperties() {
   const rows = document.querySelectorAll('tbody tr');
 
   rows.forEach((item) => {
@@ -22,10 +22,8 @@ function getPropertys() {
     names.push(cells[0].textContent);
     position.push(cells[1].textContent);
     ages.push(cells[2].textContent);
-    salarys.push(cells[3].textContent);
+    salaries.push(cells[3].textContent);
   });
-
-  toSorting(names, position, ages, salarys);
 }
 
 function toSorting(index) {
@@ -36,19 +34,19 @@ function toSorting(index) {
   } else if (index === 2) {
     ages.sort((a, b) => a - b);
   } else if (index === 3) {
-    const convertSalatyToNum = salarys.map((salary) => {
+    const convertSalaryToNum = salaries.map((salary) => {
       return parseInt(salary.replace(/[^\d.-]/g, ''));
     });
 
-    convertSalatyToNum.sort((a, b) => a - b);
-    salarys.length = 0;
-    salarys.push(...convertSalatyToNum);
+    convertSalaryToNum.sort((a, b) => a - b);
+    salaries.length = 0;
+    salaries.push(...convertSalaryToNum);
   }
 
-  updeteList();
+  updateList();
 }
 
-function updeteList() {
+function updateList() {
   const rows = document.querySelectorAll('tbody tr');
 
   rows.forEach((row, index) => {
@@ -57,8 +55,8 @@ function updeteList() {
     cells[0].textContent = names[index] || cells[0].textContent;
     cells[1].textContent = position[index] || cells[1].textContent;
     cells[2].textContent = ages[index] || cells[2].textContent;
-    cells[3].textContent = salarys[index] || cells[3].textContent;
+    cells[3].textContent = salaries[index] || cells[3].textContent;
   });
 }
 
-getPropertys();
+getProperties();
